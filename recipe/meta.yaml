@@ -20,7 +20,7 @@ build:
     - "*/enaml/core/byteplay/*.py"
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
     - atom >=0.4.1
@@ -28,6 +28,9 @@ requirements:
     - ply >=3.4
     - future
     - qtpy >=1.3
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   run:
     - python
     - python.app  # [osx]
