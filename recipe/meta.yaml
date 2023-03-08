@@ -64,7 +64,7 @@ about:
   license_family: BSD
   license_file: LICENSE
   summary: Declarative DSL for building rich user interfaces in Python
-  doc_url: http://nucleic.github.io/enaml/docs/
+  doc_url: https://github.com/nucleic/enaml/tree/main/docs
   dev_url: https://github.com/nucleic/enaml
 
 extra:
