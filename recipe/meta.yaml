@@ -17,7 +17,6 @@ build:
   entry_points:
     - enaml-run = enaml.runner:main
     - enaml-compileall = enaml.compile_all:main
-  osx_is_app: true
 
 requirements:
   build:
