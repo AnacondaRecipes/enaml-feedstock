@@ -33,6 +33,9 @@ requirements:
     - bytecode 0.14.0
   run:
     - python
+    - python.app  # [osx]
+    - pyqt
+    - qtpy >=2.1.0
     - ply
     - atom >=0.9.0
     - kiwisolver >=1.2.0
