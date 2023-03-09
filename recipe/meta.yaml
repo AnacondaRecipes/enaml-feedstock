@@ -12,12 +12,12 @@ source:
 
 build:
   number: 0
-  skip: True  # [py<38 or ppc64le]
+  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
   entry_points:
     - enaml-run = enaml.runner:main
     - enaml-compileall = enaml.compile_all:main
-  osx_is_app: true 
+  osx_is_app: true
 
 requirements:
   build:
@@ -76,3 +76,5 @@ extra:
     - licode
     - MatthieuDartiailh
     - tacaswell
+    - marcelotrevisani
+    - gabrielcnr
