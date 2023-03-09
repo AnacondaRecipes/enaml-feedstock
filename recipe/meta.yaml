@@ -1,6 +1,6 @@
 {% set name = "enaml" %}
-{% set version = "0.13.0" %}
-{% set sha256 = "138224c353cae40af210d3d770377395855f19e7c1c5d449bfa1fd3d189c4801" %}
+{% set version = "0.16.0" %}
+{% set sha256 = "dee51e9099965de4dac3ba779a0852722ae7b1f1ae0f39f75dd15400171cd5a2" %}
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -12,7 +12,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [ppc64le]
+  skip: true  # [py<38 or ppc64le or s390x]
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
   entry_points:
     - enaml-run = enaml.runner:main
@@ -23,28 +23,31 @@ requirements:
   build:
     - {{ compiler('cxx') }}
   host:
-    - python >=3.6
-    - setuptools
+    - python
     - pip
-    - atom >=0.6.0
-    - kiwisolver >=1.2.0
-    - ply >=3.4
-    - qtpy >=1.3
-    - cppy >=1.1.0
-    - bytecode >=0.11.0
+    - setuptools
+    - wheel
+    - setuptools_scm
+    - toml
+    - cppy 1.2.1
+    - bytecode 0.14.0
   run:
-    - python >=3.6
+    - python
     - python.app  # [osx]
-    - atom >=0.6.0
     - pyqt
-    - qtpy >=1.3
+    - qtpy >=2.1.0
+    - ply
+    - atom >=0.9.0
     - kiwisolver >=1.2.0
-    - ply >=3.4
-    - bytecode >=0.11.0
+    - bytecode >=0.13.0
+    - pegen >=0.1.0
 
 test:
+  requires:
+    - pip
   commands:
     - enaml-run --help
+    - pip check
   imports:
     - enaml
     - enaml.callableref
@@ -61,11 +64,14 @@ test:
 
 about:
   home: https://github.com/nucleic/enaml
+  description: |
+    Enaml is a programming language and framework for creating 
+    professional-quality user interfaces with minimal effort.
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
   summary: Declarative DSL for building rich user interfaces in Python
-  doc_url: http://nucleic.github.io/enaml/docs/
+  doc_url: https://enaml.readthedocs.io/
   dev_url: https://github.com/nucleic/enaml
 
 extra:
@@ -74,3 +80,5 @@ extra:
     - licode
     - MatthieuDartiailh
     - tacaswell
+    - marcelotrevisani
+    - gabrielcnr
