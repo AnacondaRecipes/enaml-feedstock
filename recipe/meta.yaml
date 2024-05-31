@@ -1,6 +1,6 @@
 {% set name = "enaml" %}
-{% set version = "0.16.0" %}
-{% set sha256 = "dee51e9099965de4dac3ba779a0852722ae7b1f1ae0f39f75dd15400171cd5a2" %}
+{% set version = "0.17.0" %}
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -8,12 +8,12 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 7015a263c1c96e8d59891009a053b904a33e09f52842907bec0c574799bfe3ce
 
 build:
   number: 1
-  skip: true  # [py<38 or ppc64le or s390x]
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  skip: true  # [py<38 or py!=3.11.0 or py!=3.11.1 or s390x]
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --no-build-isolation
   entry_points:
     - enaml-run = enaml.runner:main
     - enaml-compileall = enaml.compile_all:main
@@ -65,7 +65,7 @@ test:
 about:
   home: https://github.com/nucleic/enaml
   description: |
-    Enaml is a programming language and framework for creating 
+    Enaml is a programming language and framework for creating
     professional-quality user interfaces with minimal effort.
   license: BSD-3-Clause
   license_family: BSD
