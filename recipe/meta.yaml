@@ -11,8 +11,8 @@ source:
   sha256: 7015a263c1c96e8d59891009a053b904a33e09f52842907bec0c574799bfe3ce
 
 build:
-  number: 1
-  skip: true  # [py<38 or py!=3.11.0 or py!=3.11.1 or s390x]
+  number: 0
+  skip: true  # [py<38 or s390x]
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --no-build-isolation
   entry_points:
     - enaml-run = enaml.runner:main
@@ -23,24 +23,22 @@ requirements:
   build:
     - {{ compiler('cxx') }}
   host:
-    - python
+    - python !=3.11.0,!=3.11.1
     - pip
-    - setuptools
+    - setuptools >=61.2
     - wheel
-    - setuptools_scm
-    - toml
+    - setuptools_scm >=3.4.3
     - cppy 1.2.1
-    - bytecode 0.14.0
   run:
     - python
-    - python.app  # [osx]
+    # - python.app  # [osx]
     - pyqt
     - qtpy >=2.1.0
     - ply
     - atom >=0.9.0
     - kiwisolver >=1.2.0
-    - bytecode >=0.13.0
-    - pegen >=0.1.0
+    - bytecode >=0.15.1
+    - pegen >=0.3.0
 
 test:
   requires:
