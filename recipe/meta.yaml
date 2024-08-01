@@ -31,7 +31,7 @@ requirements:
     - cppy 1.2.1
   run:
     - python
-    # - python.app  # [osx]
+    - python.app  # [osx]
     - pyqt
     - qtpy >=2.1.0
     - ply
