@@ -23,7 +23,7 @@ requirements:
   build:
     - {{ compiler('cxx') }}
   host:
-    - python !=3.11.0,!=3.11.1
+    - python
     - pip
     - setuptools >=61.2
     - wheel
@@ -39,6 +39,8 @@ requirements:
     - kiwisolver >=1.2.0
     - bytecode >=0.15.1
     - pegen >=0.3.0
+  run_constrained:
+    - python !=3.11.0,!=3.11.1
 
 test:
   requires:
