@@ -1,5 +1,5 @@
 {% set name = "enaml" %}
-{% set version = "0.17.0" %}
+{% set version = "0.19.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7015a263c1c96e8d59891009a053b904a33e09f52842907bec0c574799bfe3ce
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: d20e93a1b34e8d800a6218d4bcfa030d3294979c6f901285fc4d3c71fabdcec2
 
 build:
   number: 0
-  skip: true  # [py<38 or s390x]
+  skip: true  # [py<310 or s390x]
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --no-build-isolation
   entry_points:
     - enaml-run = enaml.runner:main
@@ -22,13 +22,15 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
   host:
     - python
     - pip
-    - setuptools >=61.2
+    - setuptools >=77.0
     - wheel
     - setuptools_scm >=3.4.3
-    - cppy 1.2.1
+    - cppy >=1.2.0
+    - setuptools-scm >=3.4.3
   run:
     - python
     - python.app  # [osx]
@@ -37,10 +39,13 @@ requirements:
     - ply
     - atom >=0.9.0
     - kiwisolver >=1.2.0
-    - bytecode >=0.15.1
+    - bytecode >=0.17.0
     - pegen >=0.3.0
   run_constrained:
     - python !=3.11.0,!=3.11.1
+    - qtpy >=2.3.0
+    - PyQt6 >=6.3.1
+    - pyside6 >=6.2.3
 
 test:
   requires:
